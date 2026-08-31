@@ -1,0 +1,184 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #131313;
+  --color-terminal-black: #000000;
+  --color-matrix-green: #00ff41;
+  --color-cyber-cyan: #00f3ff;
+  --color-error-red: #ff3e3e;
+  --color-muted-gray: #666666;
+  --color-on-surface: #e5e2e1;
+  --color-on-surface-variant: #b9ccb2;
+  --color-surface: #131313;
+  --color-surface-dim: #131313;
+  --color-surface-bright: #393939;
+  --color-surface-variant: #353534;
+  --color-surface-container: #201f1f;
+  --color-surface-container-low: #1c1b1b;
+  --color-surface-container-high: #2a2a2a;
+  --color-surface-container-highest: #353534;
+  --color-surface-container-lowest: #0e0e0e;
+  --color-outline: #84967e;
+  --color-outline-variant: #3b4b37;
+  --color-primary-container: #00ff41;
+
+  --font-mono: "JetBrains Mono", monospace;
+  --font-sans: "Inter", sans-serif;
+}
+
+body {
+  background-color: #131313;
+  color: #e5e2e1;
+  font-family: "Inter", sans-serif;
+  background-image: 
+    linear-gradient(rgba(0, 255, 65, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 65, 0.03) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* Monospace default for code & headers */
+h1, h2, h3, h4, h5, h6, .font-mono-tag {
+  font-family: "JetBrains Mono", monospace;
+}
+
+.cyber-card {
+  background-color: #131313;
+  border: 1px solid #353534;
+  box-shadow: 0 0 10px rgba(0, 255, 65, 0.08);
+  transition: all 0.25s ease;
+}
+
+.cyber-card:hover {
+  border-color: #00ff41;
+  box-shadow: 0 0 20px rgba(0, 255, 65, 0.35), inset 0 0 12px rgba(0, 255, 65, 0.08);
+}
+
+.cyber-button {
+  box-shadow: 0 0 8px rgba(0, 255, 65, 0.2);
+  transition: all 0.2s ease-in-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.cyber-button:hover {
+  box-shadow: 0 0 20px rgba(0, 255, 65, 0.6), inset 0 0 10px rgba(0, 255, 65, 0.25);
+}
+
+.cyber-button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transform: skewX(-20deg);
+  pointer-events: none;
+}
+
+.cyber-button:hover::after {
+  left: 150%;
+  transition: left 0.5s ease-in-out;
+}
+
+.typewriter-cursor {
+  display: inline-block;
+  width: 10px;
+  height: 1.15em;
+  background-color: #00ff41;
+  animation: blink 1s step-end infinite;
+  vertical-align: text-bottom;
+  margin-left: 4px;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes steady-flicker {
+  0%, 100% { opacity: 1; }
+  95% { opacity: 1; }
+  96% { opacity: 0.85; }
+  97% { opacity: 1; }
+  98% { opacity: 0.9; }
+  99% { opacity: 1; }
+}
+
+.terminal-flicker {
+  animation: steady-flicker 4s infinite;
+}
+
+.persistent-glitch {
+  animation: text-glitch-skew 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+}
+
+@keyframes text-glitch-skew {
+  0% { transform: skew(0deg); }
+  5% { transform: skew(-2deg); text-shadow: -1px 0 #ff3e3e, 1px 0 #00f3ff; }
+  10% { transform: skew(2deg); text-shadow: 1px 0 #ff3e3e, -1px 0 #00f3ff; }
+  15% { transform: skew(0deg); text-shadow: none; }
+  100% { transform: skew(0deg); }
+}
+
+.section-separator {
+  border-top: 1px solid #353534;
+  position: relative;
+}
+
+.section-separator::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 100px;
+  height: 1px;
+  background-color: #00ff41;
+  box-shadow: 0 0 10px #00ff41;
+}
+
+.scan-lines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0) 50%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0.3)
+  );
+  background-size: 100% 4px;
+  z-index: 40;
+  pointer-events: none;
+  opacity: 0.55;
+}
+
+#matrix-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  opacity: 0.18;
+  pointer-events: none;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0e0e0e;
+}
+::-webkit-scrollbar-thumb {
+  background: #353534;
+  border-radius: 0px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #00ff41;
+}
